@@ -7,6 +7,8 @@ import { walletConnect, injected, coinbaseWallet } from "wagmi/connectors";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+
+
 const queryClient = new QueryClient();
 
 const projectId = import.meta.env.VITE_PROJECT_ID;
@@ -15,7 +17,7 @@ if (!projectId) throw new Error("Project ID is undefined");
 const metadata = {
   name: "web3modal",
   description: "web3modal example for me !",
-  url: "https://web3modal.com",
+  url: import.meta.env.BASE_URL,
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 

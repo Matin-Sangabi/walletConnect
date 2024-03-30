@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import "./App.css";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
+import { useAccount } from "wagmi";
+import { useSignMessage } from "wagmi";
 function App() {
-  const [count, setCount] = useState(0)
+  const { open } = useWeb3Modal();
+  const { address, isConnected, isDisconnected } = useAccount();
+  console.log(isConnected, isDisconnected);
 
+  const { signMessage } = useSignMessage();
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button onClick={() => open()}>connect</button>
+      <br />
+      <br />
+
+      <button onClick={() => open({ view: "NetWork" })}>connect NetWork</button>
+
+      <br />
+      <br />
+      <button onClick={() => signMessage({ message: "hello to my app " })}>
+        show message
+      </button>
+
+      <br />
+      <br />
+      <span>{address}</span>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
