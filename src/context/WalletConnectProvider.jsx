@@ -7,6 +7,7 @@ import { walletConnect, injected, coinbaseWallet } from "wagmi/connectors";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+// change theme's
 
 
 const queryClient = new QueryClient();
@@ -42,6 +43,11 @@ const config = createConfig({
 createWeb3Modal({
   wagmiConfig: config,
   projectId,
+  themeMode : "light",
+  themeVariables :{ 
+    "--w3m-color-mix" : "#48ddee",
+    "--w3m-accent" : "#d925ee"
+  }
 });
 
 export default function CustomConnectorProvider({ children }) {
